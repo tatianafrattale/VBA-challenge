@@ -38,6 +38,16 @@ Sub vba_challenge()
 
     Else
 
+      ' Create variables to hold values for yearly change and place in correct column
+      year_open = Range("C" & i)
+      year_close = Range("F" & i)
+      yearly_change = year_close - year_open
+      Range("J" & Summary_Table_Row).Value = yearly_change
+
+      ' Determine percent change and place in correct column
+      percent_change = yearly_change / year_open
+      Range("K" & Summary_Table_Row).Value = percent_change
+
 
     End If
 
