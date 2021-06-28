@@ -48,9 +48,17 @@ Sub vba_challenge()
       percent_change = yearly_change / year_open
       Range("K" & Summary_Table_Row).Value = percent_change
 
-
     End If
 
+      ' Use conditional formatting to insert green and red on yearly change values
+      If Cells(i, 10).Value <= 0 Then
+         Cells(i, 10).Interior.ColorIndex = 3
+      Else
+         Cells(i, 10).Interior.ColorIndex = 4
+      End If
+   
+   
+    
   Next i
 
 End Sub
