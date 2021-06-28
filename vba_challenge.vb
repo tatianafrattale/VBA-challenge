@@ -7,8 +7,16 @@ Sub vba_challenge()
   Cells(1, 12).Value = "Total Stock Volume"
 
 
-' Set an initial variable for holding the ticker name
+' Set an initial variables
   Dim ticker_name As String
+  Dim last_total As Long
+    last_total = 2
+  Dim year_open As Double
+  Dim year_close As Double
+  Dim yearly_change As Double
+  Dim total_stock As Long
+  Dim percent_change As Double
+
 
 
 ' Keep track of the location for each ticker name in the summary table
@@ -37,15 +45,20 @@ Sub vba_challenge()
       Summary_Table_Row = Summary_Table_Row + 1
 
     Else
+    End If
+
 
       ' Create variables to hold values for yearly change and place in correct column
-      year_open = Range("C" & i)
+      year_open = Range("C" & last_total)
       year_close = Range("F" & i)
       yearly_change = year_close - year_open
       Range("J" & Summary_Table_Row).Value = yearly_change
 
       ' Determine percent change and place in correct column
-      percent_change = yearly_change / year_open
+      If year_open = 0 Then
+        percent_change = 0
+      Else
+      percent_change = yearly_change / year_open * 100
       Range("K" & Summary_Table_Row).Value = percent_change
 
     End If
@@ -58,7 +71,6 @@ Sub vba_challenge()
       End If
 
     ' Create variable that holds total stock value
-    Dim total_stock As Long
     total_stock = 0
     total_stock = total_stock + Cells(i, 7).Value
     Range("L" & Summary_Table_Row).Value = total_stock
@@ -76,3 +88,4 @@ Sub vba_challenge()
   Next i
 
 End Sub
+
