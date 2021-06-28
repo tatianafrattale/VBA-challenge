@@ -56,7 +56,21 @@ Sub vba_challenge()
       Else
          Cells(i, 10).Interior.ColorIndex = 4
       End If
+
+    ' Create variable that holds total stock value
+    Dim total_stock As Long
+    total_stock = 0
+    total_stock = total_stock + Cells(i, 7).Value
+    Range("L" & Summary_Table_Row).Value = total_stock
+    
+     ' Create if to reset the stock count if the ticker is different
    
+      If Cells(i + 1, 1) <> Cells(i, 1) Then
+            Cells(i, 9).Value = ticker
+            Cells(i, 10).Value = total_stock
+            total_stock = 0
+   End If
+
    
     
   Next i
